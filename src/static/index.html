@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>FC2 Injector</h1>
-
+    <span id="status" class="status has-text-danger">Not injected</span>
     <div class="tabs">
       <ul>
         <li class="is-active" id="home-tab"><a>Home</a></li>
@@ -18,19 +18,7 @@
     </div>
 
     <section id="home">
-      <pre>
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-        POGGING
-      </pre>
+      <iframe class="editor-frame" src="./editor.html" frameborder="0" scrolling="no"></iframe>
     </section>
 
     <section id="settings" hidden>
@@ -40,6 +28,7 @@
         <div class="field has-addons">
           <div class="control we-wide">
             <input
+              id="fc-location-field"
               class="input"
               name="fc-location"
               type="text"
@@ -56,6 +45,7 @@
         <div class="field has-addons">
           <div class="control we-wide">
             <input
+              id="css-location-field"
               class="input"
               name="css-location"
               type="text"
@@ -68,6 +58,7 @@
         </div>
 
         <button id="inject-button" class="button is-danger">Inject</button>
+        <button id="uninject-button" hidden class="button is-danger">Ejaculate</button>
         <button id="save-config-button" class="button is-primary">Save Config</button>
       </div>
     </section>

@@ -1,7 +1,31 @@
 @charset "utf-8";
 
-$danger: #ca040a;
-$primary: #4b78a0;
+$body-background-color: #2e3440;
+$background: #434c5e;
+$black: #eceff4;
+$black-bis: #e5e9f0;
+$black-ter: #d8dee9;
+$grey-darker: #4c566a;
+$grey-dark: #434c5e;
+$grey: #3b4252;
+$grey-light: #4c566a;
+$grey-lighter: #434c5e;
+$grey-lightest: #3b4252;
+$white-ter: #434c5e;
+$white-bis: #3b4252;
+$white: #2e3440;
+
+$orange: #d08770;
+$yellow: #ebcb8b;
+$green: #a3be8c;
+$turquoise: #8fbcbb;
+$cyan: #88c0d0;
+$blue: #81a1c1;
+$purple: #b48ead;
+$red: #bf616a;
+
+$text: $black-ter;
+$text-strong: $black;
 
 @import '../../node_modules/bulma/sass/utilities/_all.sass';
 @import '../../node_modules/bulma/sass/base/_all.sass';
@@ -11,14 +35,41 @@ $primary: #4b78a0;
 @import '../../node_modules/bulma/sass/form/_all.sass';
 @import '../../node_modules/bulma/sass/components/navbar.sass';
 @import '../../node_modules/bulma/sass/components/tabs.sass';
+@import '../../node_modules/bulma/sass/helpers/color.sass';
 @import '../../node_modules/bulma/sass/layout/hero.sass';
 @import '../../node_modules/bulma/sass/layout/section.sass';
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  background: $body-background-color;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $grey-dark;
+  border-radius: 500px;
+}
+
+html {
+  overflow-y: hidden;
+}
 
 body {
   display: flex;
   flex-direction: column;
 
+  overflow-y: auto;
+
+  height: 100vh;
+  width: 100%;
+
   padding: 1em 4em;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 h1 {
@@ -28,10 +79,23 @@ h1 {
   margin-right: auto;
 }
 
+section {
+  height: 100%;
+}
+
+.status {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .we-wide {
   width: 100%;
 }
 
-[hidden] {
-  display: none !important;
+.editor-frame {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }

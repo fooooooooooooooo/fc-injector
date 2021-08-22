@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.3",
-    "electron": "^13.2.1"
+    "electron": "^13.2.1",
+    "monaco-editor": "^0.27.0"
   }
 }
