@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+$danger: #ca040a;
+$primary: #4b78a0;
+
+@import '../../node_modules/bulma/sass/utilities/_all.sass';
+@import '../../node_modules/bulma/sass/base/_all.sass';
+@import '../../node_modules/bulma/sass/elements/button.sass';
+@import '../../node_modules/bulma/sass/elements/container.sass';
+@import '../../node_modules/bulma/sass/elements/title.sass';
+@import '../../node_modules/bulma/sass/form/_all.sass';
+@import '../../node_modules/bulma/sass/components/navbar.sass';
+@import '../../node_modules/bulma/sass/components/tabs.sass';
+@import '../../node_modules/bulma/sass/layout/hero.sass';
+@import '../../node_modules/bulma/sass/layout/section.sass';
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1em 4em;
+}
+
+h1 {
+  font-size: 1.5em;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.we-wide {
+  width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}

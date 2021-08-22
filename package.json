@@ -1,0 +1,25 @@
+{
+  "name": "fc-injector",
+  "version": "1.0.0",
+  "description": "Electron app to inject css into fc2",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:windows": "electron-packager . --asar --overwrite --out ./bin"
+  },
+  "repository": "https://github.com/fooooooooooooooo/fc-injector",
+  "author": "fooooooooooooooo",
+  "license": "MIT",
+  "devDependencies": {
+    "electron-packager": "^15.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.1",
+    "prettier": "^2.3.2",
+    "prettier-eslint": "^13.0.0"
+  },
+  "dependencies": {
+    "bulma": "^0.9.3",
+    "electron": "^13.2.1"
+  }
+}

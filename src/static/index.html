@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FC2 Injector</title>
+
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <h1>FC2 Injector</h1>
+
+    <div class="tabs">
+      <ul>
+        <li class="is-active" id="home-tab"><a>Home</a></li>
+        <li id="settings-tab"><a>Settings</a></li>
+      </ul>
+    </div>
+
+    <section id="home">
+      <pre>
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+        POGGING
+      </pre>
+    </section>
+
+    <section id="settings" hidden>
+      <div>
+        <label class="label" for="fc-location">FC2 Location</label>
+
+        <div class="field has-addons">
+          <div class="control we-wide">
+            <input
+              class="input"
+              name="fc-location"
+              type="text"
+              placeholder="C:\Users\username\Documents\Fightcade"
+            />
+          </div>
+          <div class="control">
+            <a class="button is-primary" id="fc-location-browse">Browse</a>
+          </div>
+        </div>
+
+        <label class="label" for="css-location">User CSS Location</label>
+
+        <div class="field has-addons">
+          <div class="control we-wide">
+            <input
+              class="input"
+              name="css-location"
+              type="text"
+              placeholder="C:\Users\username\Documents\Fightcade\user.css"
+            />
+          </div>
+          <div class="control">
+            <a class="button is-primary" id="css-location-browse">Browse</a>
+          </div>
+        </div>
+
+        <button id="inject-button" class="button is-danger">Inject</button>
+        <button id="save-config-button" class="button is-primary">Save Config</button>
+      </div>
+    </section>
+
+    <script src="../renderer.js"></script>
+  </body>
+</html>
