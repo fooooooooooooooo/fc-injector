@@ -17,6 +17,7 @@ const injector = require('./injector');
 let config = {
   fightcadePath: '',
   cssPath: '',
+  enableDevtools: false,
 };
 
 const configPath = path.join(rootDir, 'config.json');
@@ -101,7 +102,7 @@ ipcMain.on('save-config', (event, data) => {
 
 ipcMain.on('inject', (event) => {
   try {
-    injector.inject(config.fightcadePath, config.cssPath);
+    injector.inject(config.fightcadePath, config.cssPath, config.enableDevtools);
   } catch (e) {
     event.sender.send('injector-error', e);
   }

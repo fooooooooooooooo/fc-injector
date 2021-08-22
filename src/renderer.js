@@ -12,6 +12,8 @@ const injectButton = document.querySelector('#inject-button');
 const uninjectButton = document.querySelector('#uninject-button');
 const saveConfigButton = document.querySelector('#save-config-button');
 
+const enableDevtools = document.querySelector('#enable-devtools');
+
 const fcLocationField = document.querySelector('#fc-location-field');
 const cssLocationField = document.querySelector('#css-location-field');
 
@@ -20,6 +22,7 @@ const statusText = document.querySelector('#status');
 const config = {
   fightcadePath: '',
   cssPath: '',
+  enableDevtools: false,
 };
 
 let css = '';
@@ -144,6 +147,10 @@ function sendCssToIFrame() {
   iframeSource.postMessage({ message: 'get-css_response', value: css });
 }
 
+function toggleDevtools() {
+  // @ts-ignore
+  config.enableDevtools = enableDevtools.value === 'on';
+}
 /**
  * @param {MessageEvent<any>} event
  */
@@ -159,6 +166,7 @@ function addListeners() {
 
   fcBrowse.addEventListener('click', browseFcDirectory);
   cssBrowse.addEventListener('click', browseCssDirectory);
+  enableDevtools.addEventListener('change', toggleDevtools);
 
   injectButton.addEventListener('click', inject);
   uninjectButton.addEventListener('click', uninject);

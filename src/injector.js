@@ -16,6 +16,8 @@ const newProtocol = `const {protocol} = require('electron');protocol.registerFil
   }
 })`;
 
+const devtoolsSnippet = 'mainWindow.openDevTools();';
+
 // After writing this I discovered that theres literally just a line that will inject a script
 // on document loaded built into the original fc2 preload.js, I will refuse to use it because
 // I spent a while writing this code, and it is not dependent on the original fc2 preload.js
@@ -101,8 +103,13 @@ function uninject(fcPath) {
   let main = fs.readFileSync(mainPath, 'utf8');
 
   main = main.replace(insecurityString, securityString);
+
   main = main.replace(`app.on('ready', () => {\n${newProtocol}`, "app.on('ready', () => {");
 
+  main = main.replace(
+    `function createTrayIcon(nativefierOptions, mainWindow) {\n${devtoolsSnippet}`,
+    'function createTrayIcon(nativefierOptions, mainWindow) {',
+  );
   fs.writeFileSync(mainPath, main);
 }
 
@@ -110,7 +117,7 @@ function uninject(fcPath) {
  * @param {string} fcPath
  * @param {string} cssPath
  */
-function inject(fcPath, cssPath) {
+function inject(fcPath, cssPath, devtools) {
   if (checkIfInjected(fcPath)) uninject(fcPath);
 
   console.log(cssPath);
@@ -149,6 +156,13 @@ function inject(fcPath, cssPath) {
   main = main.replace(securityString, insecurityString);
 
   main = main.replace("app.on('ready', () => {", `app.on('ready', () => {\n${newProtocol}`);
+
+  if (devtools) {
+    main = main.replace(
+      'function createTrayIcon(nativefierOptions, mainWindow) {',
+      `function createTrayIcon(nativefierOptions, mainWindow) {\n${devtoolsSnippet}`,
+    );
+  }
 
   fs.writeFileSync(mainPath, main);
 }
