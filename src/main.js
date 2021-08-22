@@ -1,4 +1,3 @@
-// Modules to control application life and create native browser window
 const {
   app, BrowserWindow, ipcMain, dialog,
 } = require('electron');
@@ -18,33 +17,20 @@ function loadConfig() {
   config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 }
 
-let mainWindow;
-
-function createWindow() {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-      preload: path.join(__dirname, 'static', 'preload.js'),
-    },
-  });
-
-  mainWindow.loadFile(path.join(__dirname, 'static', 'index.html'));
-}
+const mainWindow = new BrowserWindow({
+  width: 800,
+  height: 600,
+  webPreferences: {
+    nodeIntegration: true,
+    contextIsolation: false,
+    preload: path.join(__dirname, 'static', 'preload.js'),
+  },
+});
 
 app.whenReady().then(() => {
-  createWindow();
+  mainWindow.loadFile(path.join(__dirname, 'static', 'index.html'));
 
   loadConfig();
-
-  app.on('activate', () => {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
