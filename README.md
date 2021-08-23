@@ -4,7 +4,7 @@ injecty css :)
 
 ## Installation
 
-1. Download the latest release for your OS from the releases tab
+1. Download the latest release for your OS from the releases tab ([here](https://github.com/fooooooooooooooo/fc-injector/releases/latest))
 2. Run `fc-injector.exe` (just `fc-injector` on linux)
 3. Go to the Settings tab
 4. <kbd>Browse</kbd> for your fightcade folder (the one with `Fightcade2.exe` in it)
