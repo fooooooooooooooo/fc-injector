@@ -1,6 +1,6 @@
 {
   "name": "fc-injector",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Electron app to inject css into fc2",
   "main": "packages/main/dist/index.cjs",
   "repository": "https://github.com/fooooooooooooooo/fc-injector",
