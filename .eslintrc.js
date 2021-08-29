@@ -1,16 +1,25 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true,
-    commonjs: true,
     es2021: true,
     node: true,
+    browser: false,
   },
-  extends: ['airbnb-base'],
+  globals: {
+    ipcRenderer: false,
+  },
+  extends: ['eslint:recommended'],
   parserOptions: {
     ecmaVersion: 12,
+    sourceType: 'module',
   },
+  ignorePatterns: ['node_modules/**', '**/dist/**'],
   rules: {
-    'no-restricted-syntax': 'off',
-    'no-console': 'off',
+    semi: ['error', 'always'],
+    /**
+     * This will make the history of changes in the hit a little cleaner
+     */
+    'comma-dangle': ['warn', 'always-multiline'],
+    quotes: ['warn', 'single'],
   },
 };

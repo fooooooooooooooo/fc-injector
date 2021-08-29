@@ -2,32 +2,56 @@
   "name": "fc-injector",
   "version": "1.1.0",
   "description": "Electron app to inject css into fc2",
-  "main": "src/main.js",
-  "scripts": {
-    "start": "electron .",
-    "build:windows_x64": "electron-packager . --asar --platform=win32 --arch=x64 --overwrite --out ./bin",
-    "build:windows_x86": "electron-packager . --asar --platform=win32 --arch=ia32 --overwrite --out ./bin",
-    "build:macos": "electron-packager . --asar --platform=darwin --overwrite --out ./bin",
-    "build:linux_x86": "electron-packager . --asar --platform=linux --arch=x64 --overwrite --out ./bin",
-    "build:linux_x64": "electron-packager . --asar --platform=linux --arch=ia32 --overwrite --out ./bin",
-    "build:all_x64": "electron-packager . --asar --platform=win32,darwin,linux --arch=x64 --overwrite --out ./bin",
-    "build:all_x86": "electron-packager . --asar --platform=win32,linux --arch=ia32 --overwrite --out ./bin",
-    "build:all": "yarn build:all_x64 & yarn build:all_x86"
-  },
+  "main": "packages/main/dist/index.cjs",
   "repository": "https://github.com/fooooooooooooooo/fc-injector",
   "author": "fooooooooooooooo",
   "license": "MIT",
+  "engines": {
+    "node": ">=v14.16",
+    "npm": ">=7.7"
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "precompile": "cross-env MODE=production npm run build",
+    "compile": "electron-builder build --config electron-builder.config.js --dir --config.asar=false",
+    "pretest": "cross-env MODE=test npm run build",
+    "test": "node tests/app.spec.js",
+    "dev": "node scripts/watch.js",
+    "lint": "eslint . --ext js,vue"
+  },
+  "browserslist": [
+    "Chrome 91"
+  ],
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint --cache --fix"
+  },
   "devDependencies": {
-    "electron-packager": "^15.3.0",
-    "electron": "^13.2.2",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint": "^7.32.0",
+    "@types/electron-devtools-installer": "2.2.0",
+    "@vitejs/plugin-vue": "1.6.0",
+    "@vue/compiler-sfc": "^3.2.6",
+    "cross-env": "7.0.3",
+    "electron": "13.2.2",
+    "electron-builder": "22.11.7",
+    "electron-devtools-installer": "3.2.0",
+    "eslint": "7.32.0",
+    "eslint-plugin-vue": "7.16.0",
+    "lint-staged": "11.1.2",
+    "prettier": "^2.3.2",
     "prettier-eslint": "^13.0.0",
-    "prettier": "^2.3.2"
+    "sass": "^1.38.1",
+    "simple-git-hooks": "2.6.1",
+    "spectron": "15.0.0",
+    "vite": "2.5.1"
   },
   "dependencies": {
+    "@vueuse/core": "^6.0.0",
     "bulma": "^0.9.3",
-    "monaco-editor": "^0.27.0"
+    "electron-updater": "4.5.0",
+    "monaco-editor": "^0.27.0",
+    "vue": "3.2.6",
+    "vue-router": "4.0.11"
   }
 }
