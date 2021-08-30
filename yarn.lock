@@ -862,10 +862,10 @@ builder-util-runtime@8.7.7:
     debug "^4.3.2"
     sax "^1.2.4"
 
-builder-util-runtime@8.8.0:
-  version "8.8.0"
-  resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-8.8.0.tgz#606fbe26267d0aeffc9a5ceb9ffc5e7e1a1fd55e"
-  integrity sha512-XMxCbIOuqZTalJ8Og0HzD6FpQ+MzmDnjM4yS5pVBGXCan0lMHdN84NThMErf4YBh1UknIVf7IYW2mZJVQfxYOQ==
+builder-util-runtime@8.8.1:
+  version "8.8.1"
+  resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-8.8.1.tgz#d6e2b5f27723a7606f381e52a3000dadb1d6e4a9"
+  integrity sha512-xHxAzdsJmMV8m/N+INzYUKfyJASeKyKHnA1uGkY8Y8JKLI/c4BG+If+L0If2YETv96CiRASkvd02tIt2pvrchQ==
   dependencies:
     debug "^4.3.2"
     sax "^1.2.4"
@@ -1480,13 +1480,13 @@ electron-publish@22.11.7:
     lazy-val "^1.0.5"
     mime "^2.5.2"
 
-electron-updater@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-4.5.0.tgz#131e14c28d93748976aad44578d98e6afe41b835"
-  integrity sha512-lYVNyoQkUhE+hDCYtxLqdxjjU3IJkbyfim2N0O87Q4UABrNpoM84V/GYy3Xg8toex9M0AyhmavuY9RaJenWZ9Q==
+electron-updater@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-4.5.1.tgz#aa9f2a3ead7ef3aebb9cb16818fe26168d98dd27"
+  integrity sha512-cdUqwprM4dRgifT5jzPTtEs8bZ6WyrVw15uS0eenTQnsIUbjviOeJhAQtZ+bKXP5bEG6SvR6wAkmDokRlVcctw==
   dependencies:
     "@types/semver" "^7.3.6"
-    builder-util-runtime "8.8.0"
+    builder-util-runtime "8.8.1"
     fs-extra "^10.0.0"
     js-yaml "^4.1.0"
     lazy-val "^1.0.5"
