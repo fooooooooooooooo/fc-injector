@@ -41,7 +41,7 @@
     "lint-staged": "11.1.2",
     "prettier": "^2.3.2",
     "prettier-eslint": "^13.0.0",
-    "sass": "^1.38.1",
+    "sass": "^1.39.0",
     "simple-git-hooks": "2.6.1",
     "spectron": "15.0.0",
     "vite": "2.5.1"
