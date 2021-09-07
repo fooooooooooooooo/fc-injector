@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/electron-devtools-installer": "2.2.0",
-    "@vitejs/plugin-vue": "1.6.0",
+    "@vitejs/plugin-vue": "1.6.1",
     "@vue/compiler-sfc": "^3.2.6",
     "cross-env": "7.0.3",
     "electron": "13.2.2",
