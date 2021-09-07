@@ -2,23 +2,21 @@ import fs from 'fs';
 import path from 'path';
 
 import { rootDir } from '../';
+import {
+  fileProtocolFeature,
+  securityFeature,
+  devtoolsFeature,
+  multiInstanceFeature,
+  transparencyFeature,
+  transparencyFixFeature,
+} from './features';
 
 const injectorMark = 'FC2-INJECTOR';
 const fcPreloadName = 'fcPreload';
-const securityString = 'webSecurity: !options.insecure';
-const insecurityString = 'webSecurity: false';
 
-const newProtocol = `const {protocol} = require('electron');protocol.registerFileProtocol('file', (request, cb) => {
-  const url = request.url.replace('file:///', '')
-  const decodedUrl = decodeURI(url)
-  try {
-    return cb(decodedUrl)
-  } catch (error) {
-    console.error('ERROR: registerLocalResourceProtocol: Could not get file path:', error)
-  }
-})`;
+// const devtoolsSnippet = 'mainWindow.openDevTools();';
 
-const devtoolsSnippet = 'mainWindow.openDevTools();';
+const defaultFeatures = [fileProtocolFeature, securityFeature];
 
 // After writing this I discovered that theres literally just a line that will inject a script
 // on document loaded built into the original fc2 preload.js, I will refuse to use it because
@@ -88,7 +86,69 @@ function prependCode(original, toPrepend) {
 }
 
 /**
- * @param {{ fightcadePath: string; cssPath: string; enableDevtools: boolean; }} config
+ * Inject feature
+ * @param {string} main
+ * @param {import('./features').Feature} feature
+ * @returns {string} main
+ */
+function injectFeature(main, feature) {
+  switch (feature.type) {
+    case 'append':
+      main = main.replace(
+        feature.location,
+        `${feature.location}\n${feature.feature}`,
+      );
+      break;
+    case 'replace':
+      main = main.replace(feature.location, feature.feature);
+      break;
+    default:
+      throw new Error('Invalid feature type');
+  }
+
+  return main;
+}
+
+/**
+ * Uninject feature
+ * @param {string} main
+ * @param {import('./features').Feature} feature
+ * @returns {string} main
+ */
+function uninjectFeature(main, feature) {
+  switch (feature.type) {
+    case 'append':
+      main = main.replace(
+        `${feature.location}\n${feature.feature}`,
+        feature.location,
+      );
+      break;
+    case 'replace':
+      main = main.replace(feature.feature, feature.location);
+      break;
+    default:
+      throw new Error('Invalid feature type');
+  }
+
+  return main;
+}
+
+/**
+ * Add feature to feature array without duplication
+ * @param {import('./features').Feature[]} features
+ * @param {import('./features').Feature} feature
+ * @returns {import('./features').Feature[]} features
+ */
+function addFeature(features, feature) {
+  if (!features.some((f) => f === feature)) {
+    features.push(feature);
+  }
+
+  return features;
+}
+
+/**
+ * @param {import('../../shared/typeDef').Config} config
  */
 async function uninject(config) {
   const libPath = getLibPath(config.fightcadePath);
@@ -108,22 +168,30 @@ async function uninject(config) {
   const mainPath = path.join(libPath, 'main.js');
   let main = await fs.promises.readFile(mainPath, 'utf8');
 
-  main = main.replace(insecurityString, securityString);
+  let features = defaultFeatures;
 
-  main = main.replace(
-    `app.on('ready', () => {\n${newProtocol}`,
-    'app.on(\'ready\', () => {',
-  );
+  if (config.enableDevtools === true) {
+    features = addFeature(features, devtoolsFeature);
+  }
 
-  main = main.replace(
-    `function createTrayIcon(nativefierOptions, mainWindow) {\n${devtoolsSnippet}`,
-    'function createTrayIcon(nativefierOptions, mainWindow) {',
-  );
+  if (config.multiInstance === true) {
+    features = addFeature(features, multiInstanceFeature);
+  }
+
+  if (config.transparency === true) {
+    features = addFeature(features, transparencyFeature);
+    features = addFeature(features, transparencyFixFeature);
+  }
+
+  features.forEach((feature) => {
+    main = uninjectFeature(main, feature);
+  });
+
   await fs.promises.writeFile(mainPath, main);
 }
 
 /**
- * @param {{ fightcadePath: string; cssPath: string; enableDevtools: boolean; }} config
+ * @param {import('../../../shared/typeDef').Config} config
  */
 async function inject(config) {
   if (await checkIfInjected(config.fightcadePath)) await uninject(config);
@@ -140,44 +208,60 @@ async function inject(config) {
     await fs.promises.unlink(preloadPath);
   }
 
-  let injectorPreload = '';
+  let injectedPreload = '';
 
-  const injectedPreload = await fs.promises.readFile(
+  // Injector specific preload code
+  const injectorPreload = await fs.promises.readFile(
     path.join(rootDir, 'injectedPreload.js'),
     'utf8',
   );
 
-  injectorPreload = prependCode(injectorPreload, `//${injectorMark}`);
-  injectorPreload = appendCode(
-    injectorPreload,
+  // Mark to identify preload
+  injectedPreload = prependCode(injectedPreload, `//${injectorMark}`);
+
+  // Path to css
+  injectedPreload = appendCode(
+    injectedPreload,
     `const cssPath = 'file:///${config.cssPath.split('\\').join('\\\\')}'`,
   );
 
-  injectorPreload = appendCode(injectorPreload, injectedPreload);
+  if(config.injectJs === true)
+  injectedPreload = appendCode(
+    injectedPreload,
+    `const jsPath = 'file:///${config.jsPath.split('\\').join('\\\\')}'`,
+  );
 
-  injectorPreload = appendCode(
-    injectorPreload,
+  injectedPreload = appendCode(injectedPreload, injectorPreload);
+
+  // Runs original preload after injector preload has run
+  injectedPreload = appendCode(
+    injectedPreload,
     `require('./${fcPreloadName}')`,
   );
 
-  await fs.promises.writeFile(preloadPath, injectorPreload);
+  await fs.promises.writeFile(preloadPath, injectedPreload);
 
   const mainPath = path.join(libPath, 'main.js');
   let main = await fs.promises.readFile(mainPath, 'utf8');
 
-  main = main.replace(securityString, insecurityString);
+  let features = defaultFeatures;
 
-  main = main.replace(
-    'app.on(\'ready\', () => {',
-    `app.on('ready', () => {\n${newProtocol}`,
-  );
-
-  if (config.enableDevtools) {
-    main = main.replace(
-      'function createTrayIcon(nativefierOptions, mainWindow) {',
-      `function createTrayIcon(nativefierOptions, mainWindow) {\n${devtoolsSnippet}`,
-    );
+  if (config.enableDevtools === true) {
+    features = addFeature(features, devtoolsFeature);
   }
+
+  if (config.multiInstance === true) {
+    features = addFeature(features, multiInstanceFeature);
+  }
+
+  if (config.transparency === true) {
+    features = addFeature(features, transparencyFeature);
+    features = addFeature(features, transparencyFixFeature);
+  }
+
+  features.forEach((feature) => {
+    main = injectFeature(main, feature);
+  });
 
   await fs.promises.writeFile(mainPath, main);
 }

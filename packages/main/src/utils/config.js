@@ -7,9 +7,17 @@ import { setConfig } from '../';
 const defaultConfig = {
   fightcadePath: '',
   cssPath: '',
+  jsPath: '',
   enableDevtools: false,
+  multiInstance: false,
+  transparency: false,
+  injectJs: false,
 };
 
+/**
+ * Returns loaded config.json
+ * @returns {Promise<import('../../../shared/typeDef').Config>}
+ */
 async function loadConfig() {
   const configPath = join(rootDir, 'config.json');
 
@@ -22,7 +30,8 @@ async function loadConfig() {
 }
 
 /**
- * @param { { fightcadePath: string, cssPath: string; enableDevtools: boolean } } config
+ * @param { import('../../../shared/typeDef').Config } config
+ * @returns {Promise<void>}
  */
 async function saveConfig(config) {
   const configPath = join(rootDir, 'config.json');

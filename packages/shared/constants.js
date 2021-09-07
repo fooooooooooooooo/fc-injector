@@ -4,8 +4,9 @@ const settingsSave = 'settings-save';
 const cssGet = 'css-get';
 const settingsGet = 'settings-get';
 
-const cssBrowse = 'css-browse';
 const fcBrowse = 'fc-browse';
+const cssBrowse = 'css-browse';
+const jsBrowse = 'js-browse';
 
 const inject = 'inject';
 const uninject = 'uninject';
@@ -20,8 +21,9 @@ export default {
   settingsSave,
   cssGet,
   settingsGet,
-  cssBrowse,
   fcBrowse,
+  cssBrowse,
+  jsBrowse,
   inject,
   uninject,
   injectedGet,

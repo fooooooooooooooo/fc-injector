@@ -21,14 +21,21 @@ if (last === 'app.asar') {
   rootDir = dirname(app.getPath('exe'));
 }
 
+/**
+ * @type {import('../../shared/typeDef').Config)}
+ */
 let config = {
   fightcadePath: '',
   cssPath: '',
+  jsPath: '',
   enableDevtools: false,
+  multiInstance: false,
+  transparency: false,
+  injectJs: false,
 };
 
 /**
- * @param {{ fightcadePath: string; cssPath: string; enableDevtools: boolean; }} conf
+ * @param {Config} conf
  */
 function setConfig(conf) {
   config = conf;
@@ -83,7 +90,6 @@ const createWindow = async () => {
    */
   mainWindow.on('ready-to-show', () => {
     mainWindow?.show();
-
     // @ts-ignore
     // eslint-disable-next-line no-constant-condition
     if (import.meta.env.MODE === 'development' && false) {
@@ -127,7 +133,7 @@ app.on('window-all-closed', () => {
 
 app
   .whenReady()
-  .then(createWindow)
+  .then(setTimeout(createWindow, 300))
   .catch((e) => console.error('Failed create window:', e));
 
 // Auto-updates
@@ -157,7 +163,8 @@ async function saveCss(css) {
  * @returns {Promise<boolean>} Success
  */
 async function inject() {
-  await injector.inject(config);
+  const conf = await loadConfig();
+  await injector.inject(conf);
   return await injector.checkIfInjected(config.fightcadePath);
 }
 
@@ -165,7 +172,8 @@ async function inject() {
  * @returns {Promise<boolean>} Success
  */
 async function uninject() {
-  await injector.uninject(config);
+  const conf = await loadConfig();
+  await injector.uninject(conf);
   return !(await injector.checkIfInjected(config.fightcadePath));
 }
 
@@ -173,7 +181,8 @@ async function uninject() {
  * @returns {Promise<boolean>} Is injected
  */
 async function getInjected() {
-  return await injector.checkIfInjected(config.fightcadePath);
+  const conf = await loadConfig();
+  return await injector.checkIfInjected(conf.fightcadePath);
 }
 
 export {

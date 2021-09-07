@@ -5,9 +5,20 @@ import { loadConfig, saveConfig } from '@/utils/config';
 import { inject, uninject, getInjected, saveCss, loadCss } from '../';
 
 async function registerIpc() {
+  ipcMain.on(constants.fcBrowse, async (event) => {
+    const location = await folderDialog();
+
+    if (location === null) return;
+
+    event.sender.send(
+      constants.fcBrowse + constants.responseSuffix,
+      location[0],
+    );
+  });
+
   ipcMain.on(constants.cssBrowse, async (event) => {
     const location = await folderDialog();
-    console.log(location);
+
     if (location === null) return;
 
     event.sender.send(
@@ -16,13 +27,13 @@ async function registerIpc() {
     );
   });
 
-  ipcMain.on(constants.fcBrowse, async (event) => {
+  ipcMain.on(constants.jsBrowse, async (event) => {
     const location = await folderDialog();
-    console.log(location);
+
     if (location === null) return;
 
     event.sender.send(
-      constants.fcBrowse + constants.responseSuffix,
+      constants.jsBrowse + constants.responseSuffix,
       location[0],
     );
   });

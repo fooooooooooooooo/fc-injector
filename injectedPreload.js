@@ -22,6 +22,12 @@ function init() {
     palmodded.rel = 'stylesheet';
     palmodded.setAttribute('href', cssPath);
     document.body.append(palmodded);
+
+    if (jsPath !== undefined) {
+      const awa = document.createElement('script');
+      awa.setAttribute('src', jsPath);
+      document.body.append(awa);
+    }
   }, 5000);
 }
 
