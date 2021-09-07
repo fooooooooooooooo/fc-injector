@@ -12,9 +12,15 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
-    "precompile": "cross-env MODE=production npm run build",
-    "compile": "electron-builder build --config electron-builder.config.js --dir --config.asar=false",
-    "pretest": "cross-env MODE=test npm run build",
+    "build-prod": "cross-env MODE=production yarn build",
+    "compile-win32": "electron-builder build --config electron-builder.config.js --win --ia32 --dir --config.asar=true",
+    "compile-win64": "electron-builder build --config electron-builder.config.js --win --x64 --dir --config.asar=true",
+    "compile-linux32": "electron-builder build --config electron-builder.config.js --l --ia32 --dir --config.asar=true",
+    "compile-linux64": "electron-builder build --config electron-builder.config.js --l --x64 --dir --config.asar=true",
+    "compile-mac": "electron-builder build --config electron-builder.config.js --mac --dir --config.asar=true",
+    "compile-all32": "electron-builder build --config electron-builder.config.js --win --linux --ia32 --dir --config.asar=true",
+    "compile-all64": "electron-builder build --config electron-builder.config.js --win --linux --ia32 --dir --config.asar=true",
+    "pretest": "cross-env MODE=test yarn build",
     "test": "node tests/app.spec.js",
     "dev": "node scripts/watch.js",
     "lint": "eslint . --ext js,vue"
