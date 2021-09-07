@@ -57,7 +57,7 @@
   "dependencies": {
     "@vueuse/core": "^6.0.0",
     "bulma": "^0.9.3",
-    "electron-updater": "4.5.0",
+    "electron-updater": "4.5.2",
     "monaco-editor": "^0.27.0",
     "vue": "3.2.9",
     "vue-router": "4.0.11"
