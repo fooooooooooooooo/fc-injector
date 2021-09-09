@@ -55,7 +55,7 @@
     "vite": "2.5.3"
   },
   "dependencies": {
-    "@vueuse/core": "^6.0.0",
+    "@vueuse/core": "^6.3.2",
     "bulma": "^0.9.3",
     "electron-updater": "4.5.0",
     "monaco-editor": "^0.27.0",
