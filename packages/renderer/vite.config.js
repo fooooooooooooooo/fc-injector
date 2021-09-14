@@ -2,6 +2,7 @@
 
 // @ts-ignore
 import { chrome } from '../../electron-vendors.config.json';
+import { defineConfig } from 'vite';
 import { join } from 'path';
 import { builtinModules } from 'module';
 import vue from '@vitejs/plugin-vue';
@@ -13,7 +14,7 @@ const PACKAGE_ROOT = __dirname;
  * @type {import('vite').UserConfig}
  * @see https://vitejs.dev/config/
  */
-const config = {
+const config = defineConfig({
   mode: process.env.MODE,
   root: PACKAGE_ROOT,
   resolve: {
@@ -48,10 +49,22 @@ const config = {
           editorWorker: [`${prefix}/editor/editor.worker`],
         },
       },
+      onwarn: function (message) {
+        // Doesn't actually work
+        // https://rollupjs.org/guide/en/#error-this-is-undefined
+        if (
+          /The 'this' keyword is equivalent to 'undefined' at the top level of an ES module, and has been rewritten./.test(
+            message,
+          )
+        ) {
+          return;
+        }
+        console.error(message);
+      },
     },
     emptyOutDir: true,
     brotliSize: false,
   },
-};
+});
 
 export default config;

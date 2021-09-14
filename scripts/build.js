@@ -5,35 +5,31 @@ const { dirname } = require('path');
 /** @type {'production' | 'development' | 'test'} */
 const mode = (process.env.MODE = process.env.MODE || 'production');
 
-const packagesConfigs = [
-  'packages/main/vite.config.js',
-  'packages/preload/vite.config.js',
-  'packages/renderer/vite.config.js',
-];
+const config = process.argv[2];
 
 /**
  * Run `vite build` for config file
  */
-const buildByConfig = (/** @type {string} */ configFile) =>
-  build({ configFile, mode });
+function buildByConfig(/** @type {string} */ configFile) {
+  return build({ configFile, mode });
+}
 (async () => {
   try {
     const totalTimeLabel = 'Total bundling time';
     console.time(totalTimeLabel);
 
-    for (const packageConfigPath of packagesConfigs) {
-      const consoleGroupName = `${dirname(packageConfigPath)}/`;
-      console.group(consoleGroupName);
+    const consoleGroupName = `${dirname(config)}/`;
+    console.group(consoleGroupName);
 
-      const timeLabel = 'Bundling time';
-      console.time(timeLabel);
+    const timeLabel = 'Bundling time';
+    console.time(timeLabel);
 
-      await buildByConfig(packageConfigPath);
+    await buildByConfig(config);
 
-      console.timeEnd(timeLabel);
-      console.groupEnd();
-      console.log('\n'); // Just for pretty print
-    }
+    console.timeEnd(timeLabel);
+    console.groupEnd();
+    console.log('\n'); // Just for pretty print
+
     console.timeEnd(totalTimeLabel);
   } catch (e) {
     console.error(e);
