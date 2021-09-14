@@ -64,7 +64,7 @@
     "vite": "2.5.3"
   },
   "dependencies": {
-    "@vueuse/core": "^6.0.0",
+    "@vueuse/core": "^6.3.3",
     "bulma": "^0.9.3",
     "electron-updater": "4.5.0",
     "gulp-vite": "^1.1.0",
