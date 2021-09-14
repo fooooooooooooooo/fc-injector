@@ -45,7 +45,8 @@ loadConfig().then((conf) => setConfig(conf));
 
 // Install "Vue.js devtools"
 // @ts-ignore
-if (import.meta.env.MODE === 'development') {
+// eslint-disable-next-line no-constant-condition
+if (import.meta.env.MODE === 'development' && false) {
   app
     .whenReady()
     .then(() => import('electron-devtools-installer'))
@@ -164,6 +165,19 @@ async function saveCss(css) {
  */
 async function inject() {
   const conf = await loadConfig();
+  if(conf.cssPath === undefined){
+    throw new Error('css path undefined');
+  }
+
+  
+  if(conf.injectJs && conf.jsPath === undefined){
+    throw new Error('js path undefined');
+  }
+
+  if(conf.fightcadePath === undefined){
+    throw new Error('fightcade path undefined');
+  }
+
   await injector.inject(conf);
   return await injector.checkIfInjected(config.fightcadePath);
 }

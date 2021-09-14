@@ -5,7 +5,7 @@
 <script>
 import { onMounted, ref, onUnmounted } from 'vue';
 import { useDebounceFn, useResizeObserver, useStorage } from '@vueuse/core';
-// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 // @ts-ignore
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 // @ts-ignore
@@ -48,7 +48,7 @@ export default {
     onMounted(() => {
       container.value = document.getElementById('container');
 
-      const monaco = import('monaco-editor/esm/vs/editor/editor.api.js');
+      // const monaco = import('monaco-editor/esm/vs/editor/editor.api.js');
 
       // @ts-ignore
       monaco.editor.defineTheme('nord-theme', theme);
