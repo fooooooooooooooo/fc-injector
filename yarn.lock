@@ -162,10 +162,10 @@
   dependencies:
     slash "^3.0.0"
 
-"@rollup/stream@1":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@rollup/stream/-/stream-1.1.0.tgz#9e57fab95421c64346f0d813efa66f2e5a36a9fb"
-  integrity sha512-agGnt8GhRPo3C5RIJIA7cI7DW3vGj1k4xKCxx2qQgYk1pE4mzupPhsbDHD1waVNc4U6cav7EzQ55MN5OS3zBWg==
+"@rollup/stream@2":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/stream/-/stream-2.0.0.tgz#2ada818c2d042e37f63119d7bf8bbfc71792f641"
+  integrity sha512-HsCyY/phZMys1zFUYoYlnDJGG9zMmYFfEjDKNQa00CYgjeyGD4cLdO6KNIkBh61AWOZfOsTPuGtNmFCsjQOfFg==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
