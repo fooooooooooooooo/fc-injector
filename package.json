@@ -40,7 +40,7 @@
     "@rollup/stream": "1",
     "@types/electron-devtools-installer": "2.2.0",
     "@vitejs/plugin-vue": "1.6.0",
-    "@vue/compiler-sfc": "^3.2.6",
+    "@vue/compiler-sfc": "^3.2.26",
     "cross-env": "7.0.3",
     "cross-spawn": "^7.0.3",
     "electron": "13.2.2",
