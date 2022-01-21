@@ -5850,10 +5850,10 @@ rollup@^0.49.2:
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.49.3.tgz#4cce32643dd8cf2154c69ff0e43470067db0adbf"
   integrity sha512-n/vHRX4GhMIyGZEQRANcSFVtvz99bSRbNMuoC33ar9f4CViqffyF9WklLb2mxIQ6I/uFf7wDEpc66bXBFE7FvA==
 
-rollup@^2.38.5, rollup@^2.56.3:
-  version "2.56.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.56.3.tgz#b63edadd9851b0d618a6d0e6af8201955a77aeff"
-  integrity sha512-Au92NuznFklgQCUcV96iXlxUbHuB1vQMaH76DHl5M11TotjOHwqk9CwcrT78+Tnv4FN9uTBxq6p4EJoYkpyekg==
+rollup@^2.38.5, rollup@^2.65.0:
+  version "2.65.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.65.0.tgz#936ed140ac28f87aff22c6ac950b3d0303fadc3b"
+  integrity sha512-ohZVYrhtVMTqqeqH26sngfMiyGDg6gCUReOsoflXvYpzUkDHp8sVG8F9FQxjs72OfnLWpXP2nNNqQ9I0vkRovA==
   optionalDependencies:
     fsevents "~2.3.2"
 
