@@ -68,7 +68,7 @@
     "bulma": "^0.9.3",
     "electron-updater": "4.5.0",
     "gulp-vite": "^1.1.0",
-    "monaco-editor": "^0.27.0",
+    "monaco-editor": "^0.32.0",
     "vue": "3.2.9",
     "vue-router": "4.0.11"
   }
