@@ -55,7 +55,7 @@
     "lint-staged": "11.1.2",
     "prettier": "^2.3.2",
     "prettier-eslint": "^13.0.0",
-    "rollup": "^2.56.3",
+    "rollup": "^2.75.3",
     "rollup-stream": "^1.24.1",
     "sass": "^1.39.0",
     "simple-git-hooks": "2.6.1",
