@@ -59,7 +59,7 @@
     "rollup-stream": "^1.24.1",
     "sass": "^1.52.2",
     "simple-git-hooks": "2.6.1",
-    "spectron": "15.0.0",
+    "spectron": "19.0.0",
     "vinyl-source-stream": "^2.0.0",
     "vite": "2.9.10"
   },
