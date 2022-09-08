@@ -69,7 +69,7 @@
     "electron-updater": "4.5.0",
     "gulp-vite": "^1.1.0",
     "monaco-editor": "^0.27.0",
-    "vue": "3.2.37",
+    "vue": "3.2.39",
     "vue-router": "4.0.11"
   }
 }
