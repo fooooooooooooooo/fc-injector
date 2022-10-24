@@ -155,12 +155,12 @@
     lodash "^4.17.15"
     tmp-promise "^3.0.2"
 
-"@rollup/plugin-alias@^3.1.5":
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.5.tgz#73356a3a1eab2e1e2fd952f9f53cd89fc740d952"
-  integrity sha512-yzUaSvCC/LJPbl9rnzX3HN7vy0tq7EzHoEiQl1ofh4n5r2Rd5bj/+zcJgaGA76xbw95/JjWQyvHg9rOJp2y0oQ==
+"@rollup/plugin-alias@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-4.0.2.tgz#fec6c6aff8dd6fce580ae6bc5345084cd702bb62"
+  integrity sha512-1hv7dBOZZwo3SEupxn4UA2N0EDThqSSS+wI1St1TNTBtOZvUchyIClyHcnDcjjrReTPZ47Faedrhblv4n+T5UQ==
   dependencies:
-    slash "^3.0.0"
+    slash "^4.0.0"
 
 "@rollup/stream@2":
   version "2.0.0"
@@ -6213,10 +6213,10 @@ simple-git-hooks@2.6.1:
   resolved "https://registry.yarnpkg.com/simple-git-hooks/-/simple-git-hooks-2.6.1.tgz#0843d7ad7d3be3bb877b86f218d0abea87611584"
   integrity sha512-nvqaNfgvcjN3cGSYJSdjwB+tP8YKRCyvuUvQ24luIjIpGhUCPpZDTJ+p+hcJiwc0lZlTCl0NayfBVDoIMG7Jpg==
 
-slash@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
-  integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+slash@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
+  integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
 slice-ansi@^1.0.0:
   version "1.0.0"
