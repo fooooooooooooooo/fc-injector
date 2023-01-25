@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.5",
-    "@rollup/stream": "2",
+    "@rollup/stream": "3",
     "@types/electron-devtools-installer": "2.2.0",
     "@vitejs/plugin-vue": "1.6.0",
     "@vue/compiler-sfc": "^3.2.6",
